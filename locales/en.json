@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "hello": "HELLO I'M",
+    "title": "Full Stack Web Developer | System Administrator | Data Analyst",
+    "description": "Development: Full Stack (Node.js, React, Next.js, Python). Infrastructure: System & Network Administration, Cloud, Security. Management: IT project management and team coordination. Strengths: Autonomy, rigor and technical adaptability.",
+    "downloadCV": "Download CV"
+  },
+  "navigation": {
+    "home": "Home",
+    "education": "Education",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "hobbies": "Hobbies"
+  },
+  "contact": {
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location"
+  },
+  "education": {
+    "title": "Education",
+    "inProgress": "In Progress"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "references": "References & Contact",
+    "website": "Website"
+  },
+  "skills": {
+    "title": "Skills",
+    "webDevelopment": "Full Stack Web Development",
+    "systemAdmin": "System & Network Admin",
+    "dataAnalyst": "Data Analyst",
+    "ai": "Artificial Intelligence",
+    "languages": "Languages"
+  },
+  "projects": {
+    "title": "Completed Projects"
+  },
+  "hobbies": {
+    "title": "Hobbies",
+    "cinema": "Cinema",
+    "music": "Music",
+    "football": "Football",
+    "playstation": "Playstation"
+  },
+  "chat": {
+    "title": "Chat Support",
+    "online": "Online Now",
+    "typing": "Rene is typing...",
+    "placeholder": "Write your message...",
+    "suggestions": {
+      "project": "Realize an IT project",
+      "about": "Learn more about Rene Makoule",
+      "skills": "Boost my skills"
+    },
+    "error": "Sorry, an error occurred. Please try again later.",
+    "document": "Document"
+  },
+  "cv": {
+    "preview": "CV Preview",
+    "create": "Create Your CV",
+    "previewDescription": "Professional and printable version.",
+    "createDescription": "Edit the fields to create your own CV (Simulation mode).",
+    "createButton": "Create My CV",
+    "reset": "Reset",
+    "downloadPDF": "Download PDF",
+    "skills": "Skills",
+    "languages": "Languages",
+    "hobbies": "Hobbies",
+    "education": "Education",
+    "experience": "Professional Experience",
+    "projects": "Recent Projects",
+    "add": "Add",
+    "addEducation": "Add Education",
+    "addExperience": "Add Experience",
+    "addProject": "Add Project",
+    "contact": "Contact:",
+    "newSkill": "New Skill",
+    "newLanguage": "New Language",
+    "newHobby": "New Hobby"
+  },
+  "footer": {
+    "copyright": "© {year} Rene Makoule"
+  }
+}
+
+

@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "hello": "BONJOUR, JE SUIS",
+    "title": "Développeur Web Full Stack | Administrateur Système | Analyste de Données",
+    "description": "Développement : Full Stack (Node.js, React, Next.js, Python). Infrastructure : Administration Système & Réseau, Cloud, Sécurité. Gestion : Pilotage de projets informatiques et coordination d'équipes. Atouts : Autonomie, rigueur et adaptabilité technique.",
+    "downloadCV": "Télécharger CV"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "education": "Éducation",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "hobbies": "Loisirs"
+  },
+  "contact": {
+    "phone": "Téléphone",
+    "email": "Email",
+    "location": "Localisation"
+  },
+  "education": {
+    "title": "Éducation",
+    "inProgress": "En cours"
+  },
+  "experience": {
+    "title": "Expérience Professionnelle",
+    "references": "Références & Contact",
+    "website": "Site Web"
+  },
+  "skills": {
+    "title": "Compétences",
+    "webDevelopment": "Développement Web Fullstack",
+    "systemAdmin": "Admin Système & Réseau",
+    "dataAnalyst": "Data Analyst",
+    "ai": "Intelligence Artificielle",
+    "languages": "Langues"
+  },
+  "projects": {
+    "title": "Projets Réalisés"
+  },
+  "hobbies": {
+    "title": "Loisirs",
+    "cinema": "Cinéma",
+    "music": "Musique",
+    "football": "Football",
+    "playstation": "Playstation"
+  },
+  "chat": {
+    "title": "Chat Support",
+    "online": "En ligne",
+    "typing": "Rene est entrain d'écrire...",
+    "placeholder": "Écrivez votre message...",
+    "suggestions": {
+      "project": "Réaliser un projet informatique",
+      "about": "En savoir plus sur Rene Makoule",
+      "skills": "Booster mes compétences"
+    },
+    "error": "Désolé, une erreur est survenue. Veuillez réessayer plus tard.",
+    "document": "Document"
+  },
+  "cv": {
+    "preview": "Aperçu du CV",
+    "create": "Créer votre CV",
+    "previewDescription": "Version professionnelle et imprimable.",
+    "createDescription": "Modifiez les champs pour créer votre propre CV (Mode simulation).",
+    "createButton": "Créer mon CV",
+    "reset": "Réinitialiser",
+    "downloadPDF": "Télécharger PDF",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "hobbies": "Loisirs",
+    "education": "Formation",
+    "experience": "Expérience Professionnelle",
+    "projects": "Projets Récents",
+    "add": "Ajouter",
+    "addEducation": "Ajouter une formation",
+    "addExperience": "Ajouter une expérience",
+    "addProject": "Ajouter un projet",
+    "contact": "Contact:",
+    "newSkill": "Nouvelle compétence",
+    "newLanguage": "Nouvelle langue",
+    "newHobby": "Nouveau loisir"
+  },
+  "footer": {
+    "copyright": "© {year} Rene Makoule"
+  }
+}
+
+
