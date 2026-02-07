@@ -20,11 +20,15 @@ function PaymentSuccessContent() {
       // Clear appropriate store
       if (type === "cart") {
         clearCart();
-        toast.success("Payment successful! Your cart has been cleared.");
       } else if (type === "direct") {
         closeCheckout();
-        toast.success("Payment successful! Thank you for your purchase.");
       }
+
+      toast.success("Payment Confirmed", {
+        description:
+          "Thank you for your purchase. Your order is now being processed and will be shipped shortly. We appreciate your patience and the trust you've placed in us.",
+        duration: 5000,
+      });
 
       // Redirect to home without query params
       router.replace("/");
