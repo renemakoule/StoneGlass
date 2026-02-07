@@ -4,9 +4,10 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, ChevronDown, Check } from "lucide-react";
 import { BESTSELLERS, PRODUCTS, Product } from "@/lib/data";
 import { formatPrice, parsePrice } from "@/lib/utils";
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useFilterStore } from "@/stores/filterStore";
 import { useProductStore } from "@/stores/productStore";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function SidebarWidget({
   title,
@@ -46,6 +47,15 @@ export function Sidebar() {
   } = useFilterStore();
 
   const { openDetail } = useProductStore();
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  // Simulate initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1200); // 1.2s delay to match product list
+    return () => clearTimeout(timer);
+  }, []);
 
   // --- AGGREGATION LOGIC ---
   const stockCounts = useMemo(() => {
@@ -147,126 +157,176 @@ export function Sidebar() {
       </SidebarWidget>
 
       <SidebarWidget title="Availability">
-        <ul className="space-y-2 text-sm text-gray-600">
-          <li
-            className="flex items-center cursor-pointer group"
-            onClick={toggleInStock}
-          >
-            <div
-              className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${inStockOnly ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
-            >
-              {inStockOnly && <Check className="w-3 h-3 text-white" />}
+        {initialLoading ? (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Skeleton className="w-4 h-4 rounded-sm" />
+              <Skeleton className="h-3 w-32 rounded-sm" />
             </div>
-            <span
-              className={`group-hover:text-gray-900 ${inStockOnly ? "font-medium text-gray-900" : ""}`}
-            >
-              In stock ({stockCounts.inStock})
-            </span>
-          </li>
-          <li
-            className="flex items-center cursor-pointer group"
-            onClick={toggleOutOfStock}
-          >
-            <div
-              className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${outOfStockOnly ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
-            >
-              {outOfStockOnly && <Check className="w-3 h-3 text-white" />}
+            <div className="flex items-center gap-2">
+              <Skeleton className="w-4 h-4 rounded-sm" />
+              <Skeleton className="h-3 w-32 rounded-sm" />
             </div>
-            <span
-              className={`group-hover:text-gray-900 ${outOfStockOnly ? "font-medium text-gray-900" : ""}`}
+          </div>
+        ) : (
+          <ul className="space-y-2 text-sm text-gray-600">
+            <li
+              className="flex items-center cursor-pointer group"
+              onClick={toggleInStock}
             >
-              Out of stock ({stockCounts.outOfStock})
-            </span>
-          </li>
-        </ul>
+              <div
+                className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${inStockOnly ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
+              >
+                {inStockOnly && <Check className="w-3 h-3 text-white" />}
+              </div>
+              <span
+                className={`group-hover:text-gray-900 ${inStockOnly ? "font-medium text-gray-900" : ""}`}
+              >
+                In stock ({stockCounts.inStock})
+              </span>
+            </li>
+            <li
+              className="flex items-center cursor-pointer group"
+              onClick={toggleOutOfStock}
+            >
+              <div
+                className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${outOfStockOnly ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
+              >
+                {outOfStockOnly && <Check className="w-3 h-3 text-white" />}
+              </div>
+              <span
+                className={`group-hover:text-gray-900 ${outOfStockOnly ? "font-medium text-gray-900" : ""}`}
+              >
+                Out of stock ({stockCounts.outOfStock})
+              </span>
+            </li>
+          </ul>
+        )}
       </SidebarWidget>
 
       <SidebarWidget title="Price">
-        <div className="flex gap-2 text-sm items-end">
-          <div className="flex flex-col w-full">
-            <span className="text-[10px] text-gray-400 mb-1">$ From</span>
-            <input
-              type="number"
-              value={priceRange.min}
-              onChange={(e) =>
-                setPriceRange(Number(e.target.value) || "", priceRange.max)
-              }
-              placeholder="0"
-              className="border border-gray-200 p-2 rounded-sm w-full text-xs focus:ring-1 focus:ring-brand-purple outline-none"
-            />
+        {initialLoading ? (
+          <div className="flex gap-2">
+            <div className="flex-1 space-y-1.5">
+              <Skeleton className="h-2 w-10 rounded-sm" />
+              <Skeleton className="h-8 w-full rounded-sm" />
+            </div>
+            <div className="flex-1 space-y-1.5">
+              <Skeleton className="h-2 w-10 rounded-sm" />
+              <Skeleton className="h-8 w-full rounded-sm" />
+            </div>
           </div>
-          <div className="flex flex-col w-full">
-            <span className="text-[10px] text-gray-400 mb-1">$ To</span>
-            <input
-              type="number"
-              value={priceRange.max}
-              onChange={(e) =>
-                setPriceRange(priceRange.min, Number(e.target.value) || "")
-              }
-              placeholder="Max"
-              className="border border-gray-200 p-2 rounded-sm w-full text-xs focus:ring-1 focus:ring-brand-purple outline-none"
-            />
+        ) : (
+          <div className="flex gap-2 text-sm items-end">
+            <div className="flex flex-col w-full">
+              <span className="text-[10px] text-gray-400 mb-1">$ From</span>
+              <input
+                type="number"
+                value={priceRange.min}
+                onChange={(e) =>
+                  setPriceRange(Number(e.target.value) || "", priceRange.max)
+                }
+                placeholder="0"
+                className="border border-gray-200 p-2 rounded-sm w-full text-xs focus:ring-1 focus:ring-brand-purple outline-none"
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <span className="text-[10px] text-gray-400 mb-1">$ To</span>
+              <input
+                type="number"
+                value={priceRange.max}
+                onChange={(e) =>
+                  setPriceRange(priceRange.min, Number(e.target.value) || "")
+                }
+                placeholder="Max"
+                className="border border-gray-200 p-2 rounded-sm w-full text-xs focus:ring-1 focus:ring-brand-purple outline-none"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </SidebarWidget>
 
       <SidebarWidget title="Color">
-        <ul className="space-y-2 text-sm text-gray-600">
-          {Object.entries(colorCounts.counts).map(([name, count]) => (
-            <li
-              key={name}
-              onClick={() => toggleColor(name)}
-              className="flex items-center justify-between group cursor-pointer"
-            >
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3.5 h-3.5 rounded-full border border-gray-200 shadow-sm"
-                  style={{
-                    backgroundColor: colorCounts.colorMap[name] || "#eee",
-                  }}
-                ></span>
-                <span
-                  className={`group-hover:text-gray-900 ${selectedColors.includes(name) ? "font-bold text-brand-purple" : ""}`}
-                >
-                  {name} ({count})
-                </span>
+        {initialLoading ? (
+          <div className="space-y-3">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <Skeleton className="w-3.5 h-3.5 rounded-full" />
+                <Skeleton className="h-3 w-24 rounded-sm" />
               </div>
-              {selectedColors.includes(name) && (
-                <Check className="w-3 h-3 text-brand-purple" />
-              )}
-            </li>
-          ))}
-          {Object.keys(colorCounts.counts).length === 0 && (
-            <li className="text-xs text-gray-400 italic">No colors detected</li>
-          )}
-        </ul>
+            ))}
+          </div>
+        ) : (
+          <ul className="space-y-2 text-sm text-gray-600">
+            {Object.entries(colorCounts.counts).map(([name, count]) => (
+              <li
+                key={name}
+                onClick={() => toggleColor(name)}
+                className="flex items-center justify-between group cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-3.5 h-3.5 rounded-full border border-gray-200 shadow-sm"
+                    style={{
+                      backgroundColor: colorCounts.colorMap[name] || "#eee",
+                    }}
+                  ></span>
+                  <span
+                    className={`group-hover:text-gray-900 ${selectedColors.includes(name) ? "font-bold text-brand-purple" : ""}`}
+                  >
+                    {name} ({count})
+                  </span>
+                </div>
+                {selectedColors.includes(name) && (
+                  <Check className="w-3 h-3 text-brand-purple" />
+                )}
+              </li>
+            ))}
+            {Object.keys(colorCounts.counts).length === 0 && (
+              <li className="text-xs text-gray-400 italic">
+                No colors detected
+              </li>
+            )}
+          </ul>
+        )}
       </SidebarWidget>
 
       <SidebarWidget title="Size">
-        <ul className="space-y-2 text-sm text-gray-600">
-          {availableSizes
-            .filter((s) => sizeCounts[s])
-            .map((size) => (
-              <li
-                key={size}
-                className="flex items-center cursor-pointer group"
-                onClick={() => toggleSize(size)}
-              >
-                <div
-                  className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${selectedSizes.includes(size) ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
-                >
-                  {selectedSizes.includes(size) && (
-                    <Check className="w-3 h-3 text-white" />
-                  )}
-                </div>
-                <span
-                  className={`group-hover:text-gray-900 ${selectedSizes.includes(size) ? "font-bold text-gray-900" : ""}`}
-                >
-                  {size} ({sizeCounts[size]})
-                </span>
-              </li>
+        {initialLoading ? (
+          <div className="grid grid-cols-2 gap-3">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center gap-2">
+                <Skeleton className="w-4 h-4 rounded-sm" />
+                <Skeleton className="h-3 w-10 rounded-sm" />
+              </div>
             ))}
-        </ul>
+          </div>
+        ) : (
+          <ul className="space-y-2 text-sm text-gray-600">
+            {availableSizes
+              .filter((s) => sizeCounts[s])
+              .map((size) => (
+                <li
+                  key={size}
+                  className="flex items-center cursor-pointer group"
+                  onClick={() => toggleSize(size)}
+                >
+                  <div
+                    className={`w-4 h-4 mr-2 border rounded-sm flex items-center justify-center transition-colors ${selectedSizes.includes(size) ? "bg-brand-purple border-brand-purple" : "border-gray-300"}`}
+                  >
+                    {selectedSizes.includes(size) && (
+                      <Check className="w-3 h-3 text-white" />
+                    )}
+                  </div>
+                  <span
+                    className={`group-hover:text-gray-900 ${selectedSizes.includes(size) ? "font-bold text-gray-900" : ""}`}
+                  >
+                    {size} ({sizeCounts[size]})
+                  </span>
+                </li>
+              ))}
+          </ul>
+        )}
       </SidebarWidget>
 
       <button
@@ -285,50 +345,68 @@ export function Sidebar() {
           </div>
         }
       >
-        <div className="space-y-4">
-          {BESTSELLERS.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => openDetail(item)}
-              className="flex gap-3 items-center group cursor-pointer hover:bg-gray-50 p-1 rounded-md transition-colors"
-            >
-              <div className="relative w-14 h-18 bg-gray-50 overflow-hidden rounded-sm hover:shadow-md transition-all">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="flex flex-col">
-                <h4 className="text-[11px] font-medium leading-tight text-gray-600 group-hover:text-brand-purple line-clamp-2 transition-colors">
-                  {item.name}
-                </h4>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-brand-red text-xs font-bold">
-                    ${formatPrice(item.price)}
-                  </span>
-                  {item.originalPrice && (
-                    <span className="text-gray-400 line-through text-[10px]">
-                      ${formatPrice(item.originalPrice)}
-                    </span>
-                  )}
+        {initialLoading ? (
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex gap-3 items-center">
+                <Skeleton className="w-14 h-18 rounded-sm shrink-0" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-3 w-full rounded-sm" />
+                  <Skeleton className="h-3 w-1/2 rounded-sm" />
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {BESTSELLERS.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => openDetail(item)}
+                className="flex gap-3 items-center group cursor-pointer hover:bg-gray-50 p-1 rounded-md transition-colors"
+              >
+                <div className="relative w-14 h-18 bg-gray-50 overflow-hidden rounded-sm hover:shadow-md transition-all">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <h4 className="text-[11px] font-medium leading-tight text-gray-600 group-hover:text-brand-purple line-clamp-2 transition-colors">
+                    {item.name}
+                  </h4>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-brand-red text-xs font-bold">
+                      ${formatPrice(item.price)}
+                    </span>
+                    {item.originalPrice && (
+                      <span className="text-gray-400 line-through text-[10px]">
+                        ${formatPrice(item.originalPrice)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </SidebarWidget>
 
-      <div className="relative w-full aspect-[4/5] rounded-sm overflow-hidden shadow-sm group cursor-pointer">
-        <Image
-          src="/pub.jpeg"
-          alt="Promo"
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-brand-purple/0 group-hover:bg-brand-purple/10 transition-colors"></div>
-      </div>
+      {initialLoading ? (
+        <Skeleton className="w-full aspect-[4/5] rounded-sm" />
+      ) : (
+        <div className="relative w-full aspect-[4/5] rounded-sm overflow-hidden shadow-sm group cursor-pointer">
+          <Image
+            src="/pub.jpeg"
+            alt="Promo"
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-brand-purple/0 group-hover:bg-brand-purple/10 transition-colors"></div>
+        </div>
+      )}
     </aside>
   );
 }
