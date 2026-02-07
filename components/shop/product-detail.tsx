@@ -62,11 +62,17 @@ export function ProductDetail() {
       quantity: quantity,
     });
     toast.success(`${selectedProduct.name} added to cart!`);
+
+    // Fermer l'interface après l'ajout
+    closeDetail();
   };
 
   const handleBuyNow = () => {
     if (selectedProduct) {
       openCheckout(selectedProduct);
+
+      // Fermer l'interface avant de passer au checkout
+      closeDetail();
     }
   };
 
