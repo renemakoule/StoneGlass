@@ -8,12 +8,12 @@ export function HeroBanner() {
       {/* CONTENT - Relative to stay above the image on mobile */}
       <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center p-6 lg:p-8 lg:bg-linear-to-r from-black via-brand-purple/30 to-black">
         <h1 className="text-3xl lg:text-4xl font-serif mb-2 leading-tight drop-shadow-md">
-          Hot Best
+          The essence
           <br />
-          Sexy Lingerie set
+          of stones, designed
         </h1>
         <p className="text-[10px] lg:text-xs tracking-widest uppercase mt-4 opacity-90 font-medium">
-          Show your richness
+          for your balance.
         </p>
       </div>
 

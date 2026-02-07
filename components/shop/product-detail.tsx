@@ -7,6 +7,7 @@ import {
   ShoppingBag,
   Heart,
   Star,
+  X,
   Plus,
   Minus,
   ChevronRight,
@@ -81,7 +82,14 @@ export function ProductDetail() {
         className="w-full lg:w-1/2 sm:max-w-none p-0 border-none bg-white shadow-2xl overflow-y-auto custom-scrollbar"
       >
         {/* HEADER: PRODUCT NAME AS TITLE */}
-        <SheetHeader className="p-6 pb-0 sticky top-0 bg-white/80 backdrop-blur-md z-30 border-b border-gray-50 mb-2">
+        <SheetHeader className="p-6 pb-0 sticky top-0 bg-white/80 backdrop-blur-md z-30 border-b border-gray-50 mb-2 relative">
+          <button
+            onClick={closeDetail}
+            className="absolute top-4 right-4 p-2 rounded-full bg-gray-100/50 hover:bg-gray-100 text-gray-500 transition-colors lg:hidden z-50"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4" />
+          </button>
           <span className="text-[10px] font-bold text-brand-purple uppercase tracking-[0.2em]">
             Product Details
           </span>

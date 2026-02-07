@@ -66,9 +66,8 @@ export default function Home() {
           <HeroBanner />
 
           <p className="text-[11px] lg:text-xs text-gray-500 mb-6 lg:mb-8 leading-relaxed">
-            The word lingerie is a word taken directly from the French language,
-            meaning undergarments, and used exclusively for more lightweight
-            items of female undergarments...
+            Minimalist jewellery for mindful rituals. Handcrafted in sterling
+            silver & gold, with genuine healing gemstones.
           </p>
 
           <Toolbar />

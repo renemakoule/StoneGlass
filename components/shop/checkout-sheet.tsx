@@ -11,7 +11,15 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { formatPrice, parsePrice } from "@/lib/utils";
-import { Plus, Minus, MapPin, ArrowRight, Truck, Loader2 } from "lucide-react";
+import {
+  Plus,
+  Minus,
+  MapPin,
+  ArrowRight,
+  Truck,
+  Loader2,
+  X,
+} from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -80,13 +88,22 @@ export function CheckoutSheet() {
         side="right"
         className="w-full sm:max-w-none md:w-[400px] p-0 border-l border-white/10 flex flex-col bg-white overflow-hidden shadow-2xl"
       >
-        <SheetHeader className="p-6 border-b border-gray-50 bg-white z-10">
-          <SheetTitle className="text-sm font-bold uppercase tracking-[0.2em] text-gray-900">
-            Fast Checkout
-          </SheetTitle>
-          <SheetDescription className="hidden">
-            Direct checkout for {product.name}
-          </SheetDescription>
+        <SheetHeader className="p-6 border-b border-gray-50 bg-white z-10 flex-row items-center justify-between space-y-0">
+          <div className="flex flex-col gap-1">
+            <SheetTitle className="text-sm font-bold uppercase tracking-[0.2em] text-gray-900">
+              Fast Checkout
+            </SheetTitle>
+            <SheetDescription className="hidden">
+              Direct checkout for {product.name}
+            </SheetDescription>
+          </div>
+          <button
+            onClick={closeCheckout}
+            className="md:hidden p-2 -mr-2 text-gray-400 hover:text-gray-900 transition-colors active:scale-95"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-8">

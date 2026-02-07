@@ -75,9 +75,9 @@ export function CartSheet({ children }: CartSheetProps) {
         side="right"
       >
         {/* PREMIUM HEADER */}
-        <div className="relative p-6 border-b border-gray-50 flex items-center justify-between bg-white z-10">
+        <div className="relative sm:p-6 p-4 border-b border-gray-50 flex items-center justify-between bg-white z-10">
           <div className="flex flex-col">
-            <SheetTitle className="text-sm font-bold uppercase tracking-[0.2em] text-gray-900 flex items-center gap-3">
+            <SheetTitle className="text-[12px] sm:text-sm font-bold uppercase tracking-[0.2em] text-gray-900 flex items-center gap-3">
               My Shopping Bag
               <span className="bg-brand-purple/10 text-brand-purple text-[10px] px-2 py-0.5 rounded-full font-bold">
                 {itemCount}
@@ -128,7 +128,7 @@ export function CartSheet({ children }: CartSheetProps) {
                 </SheetClose>
               </motion.div>
             ) : (
-              <div className="p-6 space-y-6">
+              <div className="sm:p-6 p-4 sm:space-y-6 space-y-4">
                 {items.map((item) => (
                   <motion.div
                     layout
@@ -136,9 +136,9 @@ export function CartSheet({ children }: CartSheetProps) {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     key={item.id}
-                    className="flex gap-4 group"
+                    className="flex gap-3 sm:gap-4 group"
                   >
-                    <div className="relative w-20 h-24 bg-gray-50 rounded-sm overflow-hidden shrink-0 border border-gray-100">
+                    <div className="relative w-16 h-20 sm:w-20 sm:h-24 bg-gray-50 rounded-sm overflow-hidden shrink-0 border border-gray-100">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -195,10 +195,10 @@ export function CartSheet({ children }: CartSheetProps) {
 
         {/* PREMIUM FOOTER */}
         {!isEmpty && (
-          <div className="p-4 bg-white border-t border-gray-50 shadow-[0_-10px_30px_rgba(0,0,0,0.02)]">
+          <div className="sm:p-4 p-3 bg-white border-t border-gray-50 shadow-[0_-10px_30px_rgba(0,0,0,0.02)] pb-safe">
             {/* DELIVERY LOCATION INPUT */}
-            <div className="mb-3">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-900 mb-1.5 block">
+            <div className="sm:mb-3 mb-2">
+              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-900 sm:mb-1.5 mb-1 block">
                 Delivery Location
               </label>
               <div className="relative">
@@ -208,14 +208,14 @@ export function CartSheet({ children }: CartSheetProps) {
                   placeholder="Enter your city or address..."
                   value={deliveryLocation}
                   onChange={(e) => setDeliveryLocation(e.target.value)}
-                  className="w-full h-9 pl-9 pr-4 text-[11px] bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all placeholder:text-gray-400"
+                  className="w-full h-8 sm:h-9 pl-9 pr-4 text-[10px] sm:text-[11px] bg-gray-50 border border-gray-100 rounded-sm focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all placeholder:text-gray-400"
                 />
               </div>
             </div>
 
             {/* SHIPPING METHOD */}
-            <div className="mb-4">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-900 mb-1.5 block">
+            <div className="sm:mb-4 mb-2">
+              <label className="text-[10px] uppercase tracking-widest font-bold text-gray-900 sm:mb-1.5 mb-1 block">
                 Shipping Method
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -252,7 +252,7 @@ export function CartSheet({ children }: CartSheetProps) {
               </div>
             </div>
 
-            <div className="space-y-1.5 mb-4 text-[11px] uppercase tracking-widest font-medium">
+            <div className="space-y-1 sm:space-y-1.5 sm:mb-4 mb-2 text-[10px] sm:text-[11px] uppercase tracking-widest font-medium">
               <div className="flex justify-between text-gray-400">
                 <span>Subtotal</span>
                 <span>${formatPrice(subtotal)}</span>
@@ -263,7 +263,7 @@ export function CartSheet({ children }: CartSheetProps) {
                   ${formatPrice(shippingCost)}
                 </span>
               </div>
-              <div className="flex justify-between text-[13px] font-bold text-gray-900 pt-2 border-t border-gray-50 mt-1.5">
+              <div className="flex justify-between text-[13px] font-bold text-gray-900 pt-2 border-t border-gray-50 sm:mt-1.5 mt-1">
                 <span>Total</span>
                 <span>${formatPrice(total)}</span>
               </div>
@@ -271,7 +271,7 @@ export function CartSheet({ children }: CartSheetProps) {
 
             <button
               onClick={handleCheckout}
-              className="group relative w-full h-11 bg-gray-900 text-white rounded-sm overflow-hidden hover:bg-brand-purple transition-all duration-500 shadow-xl shadow-gray-200"
+              className="group relative w-full h-10 sm:h-11 bg-gray-900 text-white rounded-sm overflow-hidden hover:bg-brand-purple transition-all duration-500 shadow-xl shadow-gray-200"
             >
               <div className="relative z-10 flex items-center justify-center gap-3">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
@@ -282,7 +282,7 @@ export function CartSheet({ children }: CartSheetProps) {
               <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:left-full transition-all duration-1000" />
             </button>
 
-            <p className="text-[9px] text-gray-400 text-center mt-3 italic font-medium">
+            <p className="text-[9px] text-gray-400 text-center mt-2 italic font-medium">
               Secure Checkout • 30-Day Returns
             </p>
           </div>
