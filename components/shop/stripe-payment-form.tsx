@@ -91,31 +91,44 @@ export function StripePaymentForm({ amount, source }: StripePaymentFormProps) {
               <h2 className="text-xl font-medium text-gray-900 mb-4 font-sans">
                 Payment
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="bg-white p-3 rounded-lg border border-gray-200">
-                  <PaymentElement
-                    options={{
-                      layout: "tabs",
-                    }}
-                  />
-                </div>
 
-                <button
-                  type="submit"
-                  disabled={!stripe || isProcessing}
-                  className="w-full h-11 bg-gray-900 text-white rounded-lg font-bold text-[13px] hover:bg-gray-800 transition-all disabled:opacity-50"
-                >
-                  {isProcessing
-                    ? "Processing..."
-                    : `Pay $${formatPrice(total)}`}
-                </button>
-
-                {errorMessage && (
-                  <div className="p-4 bg-red-50 text-red-600 rounded-lg text-[13px] border border-red-100">
-                    {errorMessage}
+              {!stripe || !elements ? (
+                /* SKELETON LOADING STATE */
+                <div className="space-y-6 animate-pulse">
+                  <div className="space-y-4">
+                    <div className="h-4 w-32 bg-gray-100 rounded" />
+                    <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 h-[280px] w-full" />
                   </div>
-                )}
-              </form>
+                  <div className="w-full h-11 bg-gray-100 rounded-lg" />
+                </div>
+              ) : (
+                /* ACTUAL FORM */
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <PaymentElement
+                      options={{
+                        layout: "tabs",
+                      }}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={!stripe || isProcessing}
+                    className="w-full h-11 bg-gray-900 text-white rounded-lg font-bold text-[13px] hover:bg-gray-800 transition-all disabled:opacity-50"
+                  >
+                    {isProcessing
+                      ? "Processing..."
+                      : `Pay $${formatPrice(total)}`}
+                  </button>
+
+                  {errorMessage && (
+                    <div className="p-4 bg-red-50 text-red-600 rounded-lg text-[13px] border border-red-100">
+                      {errorMessage}
+                    </div>
+                  )}
+                </form>
+              )}
             </section>
 
             <footer className="pt-12 pb-6 border-t border-gray-100 text-[10px] text-gray-400 flex gap-6">
