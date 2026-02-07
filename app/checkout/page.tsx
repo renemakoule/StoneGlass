@@ -127,7 +127,7 @@ export default function CheckoutPage() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -top-[10%] -left-[10%] w-[800px] h-[800px] bg-brand-purple/40 rounded-full blur-[160px]"
+          className="absolute -top-[15%] -left-[15%] w-[1000px] h-[1000px] bg-brand-purple/55 rounded-full blur-[200px]"
         />
         <motion.div
           animate={{
@@ -141,7 +141,7 @@ export default function CheckoutPage() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -bottom-[10%] -right-[10%] w-[900px] h-[900px] bg-blue-500/30 rounded-full blur-[200px]"
+          className="absolute -bottom-[15%] -right-[15%] w-[1100px] h-[1100px] bg-blue-500/45 rounded-full blur-[250px]"
         />
       </div>
 
@@ -168,17 +168,17 @@ export default function CheckoutPage() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden relative z-20">
+      <main className="flex-1 flex flex-col items-center justify-center p-0 md:p-8 overflow-y-auto md:overflow-hidden relative z-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-5xl h-full max-h-[650px] bg-white rounded-md border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col relative"
+          className="w-full max-w-5xl h-full md:max-h-[650px] bg-white md:rounded-md border-x-0 border-y md:border border-gray-100 shadow-[0_25px_80px_-15px_rgba(0,0,0,0.5),0_0_50px_rgba(110,84,251,0.2)] overflow-hidden flex flex-col relative"
         >
           {/* Subtle Glow Border inside */}
-          <div className="absolute inset-0 pointer-events-none border border-brand-purple/5 rounded-md z-50" />
+          <div className="hidden md:block absolute inset-0 pointer-events-none border border-brand-purple/10 rounded-md z-50" />
 
-          <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 flex flex-col md:flex-row overflow-hidden md:overflow-hidden overflow-y-auto md:overflow-y-visible">
             {clientSecret ? (
               <Elements
                 stripe={getStripe()}
