@@ -67,7 +67,16 @@ export function InfiniteProductList() {
   // Initialize items with filter
   const [items, setItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const observerTarget = useRef(null);
+
+  // Simulate initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1200); // 1.2s delay for initial skeletons
+    return () => clearTimeout(timer);
+  }, []);
 
   // Reset items when filters change
   useEffect(() => {
@@ -122,12 +131,22 @@ export function InfiniteProductList() {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {items.map((product, index) => (
-          <ProductCard key={`${product.id}-${index}`} product={product} />
-        ))}
+        {initialLoading ? (
+          <>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <SkeletonProductCard key={`initial-skeleton-${i}`} />
+            ))}
+          </>
+        ) : (
+          <>
+            {items.map((product, index) => (
+              <ProductCard key={`${product.id}-${index}`} product={product} />
+            ))}
+          </>
+        )}
 
-        {/* Loading Skeletons */}
-        {loading && (
+        {/* Loading Skeletons for pagination */}
+        {loading && !initialLoading && (
           <>
             {[1, 2, 3, 4].map((i) => (
               <SkeletonProductCard key={`skeleton-${i}`} />
