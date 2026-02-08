@@ -11,8 +11,8 @@ import { MainFooter } from "@/components/layout/main-footer";
 import { PRODUCTS } from "@/lib/data";
 
 export default function Home() {
-  // Take first 8 for Best Sellers
-  const bestSellers = PRODUCTS.slice(0, 8);
+  // Take next 8 for Best Sellers to avoid duplication with main list
+  const bestSellers = PRODUCTS.slice(8, 16);
 
   return (
     <main className="min-h-screen bg-white font-sans text-gray-800 flex flex-col relative">

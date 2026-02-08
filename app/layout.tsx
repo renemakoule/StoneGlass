@@ -13,9 +13,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "StoneGlass",
-  description: "StoneGlass",
-  generator: "StoneGlass",
+  title: "StoneGlas",
+  description: "StoneGlas",
+  generator: "StoneGlas",
   icons: {
     icon: [
       {
