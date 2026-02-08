@@ -1,24 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroBanner() {
   return (
-    <div className="relative bg-brand-dark text-white rounded-lg flex overflow-hidden mb-6 h-[220px] lg:h-[250px]">
-      {/* CONTENT - Relative to stay above the image on mobile */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center p-6 lg:p-8 lg:bg-linear-to-r from-black via-brand-purple/30 to-black">
-        <h1 className="text-3xl lg:text-4xl font-serif mb-2 leading-tight drop-shadow-md">
-          The essence
-          <br />
-          of stones, designed
+    <div className="relative bg-brand-dark text-white flex overflow-hidden w-full h-[400px] lg:h-[400px]">
+      {/* CONTENT */}
+      <div className="relative z-10 w-full flex flex-col justify-center items-center text-center p-8 bg-black/30">
+        <h1 className="text-3xl font-serif mb-8 leading-tight max-w-4xl drop-shadow-2xl">
+          The essence of stones, designed for your balance.
         </h1>
-        <p className="text-[10px] lg:text-xs tracking-widest uppercase mt-4 opacity-90 font-medium">
-          for your balance.
-        </p>
+        <Link
+          href="/catalog"
+          className="bg-[#ffffff] text-black px-10 py-4 rounded-sm uppercase tracking-[0.3em] text-[10px] lg:text-xs font-bold hover:bg-white hover:text-black transition-all duration-500 shadow-xl"
+        >
+          Explore our bracelets
+        </Link>
       </div>
 
-      {/* IMAGE - Absolute on mobile, Relative on desktop */}
-      <div className="absolute inset-0 lg:relative lg:flex-1 z-0">
+      {/* IMAGE */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/hero-section.jpeg"
           alt="Banner"
@@ -26,8 +28,8 @@ export function HeroBanner() {
           className="object-cover"
           priority
         />
-        {/* Mobile Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70 lg:hidden" />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     </div>
   );

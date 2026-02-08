@@ -1,13 +1,31 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
+import Link from "next/link";
 import { Product, PRODUCTS } from "@/lib/data";
 import { ProductCard } from "./product-card";
 import { SkeletonProductCard } from "./skeleton-product-card";
 import { useFilterStore } from "@/stores/filterStore";
 import { parsePrice } from "@/lib/utils";
 
-export function InfiniteProductList() {
+interface InfiniteProductListProps {
+  title?: string;
+  limit?: number;
+  initialProducts?: Product[];
+  hideFilters?: boolean;
+}
+
+export function ProductGrid({
+  title,
+  limit,
+  initialProducts,
+  hideFilters = false,
+  sortOption = "featured",
+  viewMode = "grid",
+}: InfiniteProductListProps & {
+  sortOption?: string;
+  viewMode?: "grid" | "list";
+}) {
   const {
     inStockOnly,
     outOfStockOnly,
@@ -18,122 +36,127 @@ export function InfiniteProductList() {
 
   // Filter Logic
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    let baseProducts = initialProducts || PRODUCTS;
+
+    const filtered = baseProducts.filter((product) => {
       // Availability
       if (inStockOnly && product.isSoldOut) return false;
       if (outOfStockOnly && !product.isSoldOut) return false;
 
       // Price
       const price = parsePrice(product.price);
-      // If min is set, check it
       if (priceRange.min !== "" && price < Number(priceRange.min)) return false;
-      // If max is set, check it
       if (priceRange.max !== "" && price > Number(priceRange.max)) return false;
 
       // Colors
-      // Infer color from name if colors array is empty (matching logic in Sidebar)
-      // or just strictly use colors array.
-      // Let's match the sidebar logic for consistency: check colors array first, then fallback to name check if needed.
       if (selectedColors.length > 0) {
         const productColors = product.colors || [];
         let hasColor = false;
-
-        // Check explicit colors
         if (productColors.some((c) => selectedColors.includes(c)))
           hasColor = true;
-
-        // Fallback: Check name if no explicit colors found matched yet (and productColors empty)
         if (!hasColor && productColors.length === 0) {
           const lowerName = product.name.toLowerCase();
           if (selectedColors.some((c) => lowerName.includes(c.toLowerCase())))
             hasColor = true;
         }
-
         if (!hasColor) return false;
       }
 
       // Sizes
       if (selectedSizes.length > 0) {
-        const productSizes = product.sizes || []; // e.g. ["S:15cm"]
-        // extracting just the label
+        const productSizes = product.sizes || [];
         const sizeLabels = productSizes.map((s) => s.split(":")[0]);
         if (!sizeLabels.some((s) => selectedSizes.includes(s))) return false;
       }
 
       return true;
     });
-  }, [inStockOnly, outOfStockOnly, priceRange, selectedColors, selectedSizes]);
+
+    // Sorting
+    let sorted = [...filtered];
+
+    if (sortOption === "price low-high") {
+      sorted.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    } else if (sortOption === "price high-low") {
+      sorted.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    } else if (sortOption === "alphabetically a-z") {
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === "alphabetically z-a") {
+      sorted.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortOption === "date old-new") {
+      // Mock date sort using ID or index (assuming stable initial order is "oldest" or "newest")
+      // If PRODUCTS is "Featured" (default), maybe reverse it for "Old to New"?
+      // Let's assume initial order is "Newest" or "Featured".
+      // We don't have a date field. Let's use ID comparison as a stable proxy.
+      sorted.sort((a, b) => a.id.localeCompare(b.id));
+    } else if (sortOption === "date new-old") {
+      sorted.sort((a, b) => b.id.localeCompare(a.id));
+    } else if (sortOption === "best selling") {
+      // Prioritize items in the "Best Sellers" list (first 8 of base PRODUCTS)
+      // We can use the index in original PRODUCTS array to determine "best selling" rank
+      const bestSellerIds = PRODUCTS.slice(0, 8).map((p) => p.id);
+      sorted.sort((a, b) => {
+        const aIsBest = bestSellerIds.includes(a.id);
+        const bIsBest = bestSellerIds.includes(b.id);
+        if (aIsBest && !bIsBest) return -1;
+        if (!aIsBest && bIsBest) return 1;
+        return 0;
+      });
+    }
+
+    return sorted;
+  }, [
+    inStockOnly,
+    outOfStockOnly,
+    priceRange,
+    selectedColors,
+    selectedSizes,
+    initialProducts,
+    sortOption,
+  ]);
 
   // Initialize items with filter
   const [items, setItems] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
-  const observerTarget = useRef(null);
 
   // Simulate initial load
   useEffect(() => {
     const timer = setTimeout(() => {
       setInitialLoading(false);
-    }, 1200); // 1.2s delay for initial skeletons
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
   // Reset items when filters change
   useEffect(() => {
-    setItems(filteredProducts.slice(0, 8));
-  }, [filteredProducts]);
+    setItems(filteredProducts.slice(0, limit || filteredProducts.length));
+  }, [filteredProducts, limit]);
 
-  const loadMore = async () => {
-    if (loading) return;
-
-    // If we are showing all filtered results, no need to load "more" from the *original* array circularly
-    // if the user wants purely filtered results.
-    // However, the original logic was "infinite loop of the same products".
-    // If we want to maintain the "infinite loop" behavior BUT constrained to the filtered items:
-    if (filteredProducts.length === 0) return;
-
-    setLoading(true);
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Looping logic restricted to filtered set
-    const currentCount = items.length;
-    const productsCount = filteredProducts.length;
-
-    let nextItems: Product[] = [];
-    for (let i = 0; i < 4; i++) {
-      // This modulo logic creates the infinite loop effect on the filtered subset
-      const index = (currentCount + i) % productsCount;
-      nextItems.push(filteredProducts[index]);
-    }
-
-    setItems((prev) => [...prev, ...nextItems]);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMore();
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-
-    return () => observer.disconnect();
-  }, [items, loading]);
+  // Grid Config based on viewMode
+  const gridClasses =
+    viewMode === "list"
+      ? "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-8" // Dense List View
+      : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10"; // Default Grid View
 
   return (
-    <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <div className="py-8">
+      {title && (
+        <div className="flex justify-between items-end mb-8 px-2">
+          <h2 className="text-xl lg:text-2xl font-semibold text-gray-900">
+            {title}
+          </h2>
+          <Link
+            href="/catalog"
+            className="text-sm text-gray-500 hover:text-black hover:underline transition-all font-medium"
+          >
+            View all
+          </Link>
+        </div>
+      )}
+      <div className={gridClasses}>
         {initialLoading ? (
           <>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8].slice(0, limit || 8).map((i) => (
               <SkeletonProductCard key={`initial-skeleton-${i}`} />
             ))}
           </>
@@ -144,22 +167,7 @@ export function InfiniteProductList() {
             ))}
           </>
         )}
-
-        {/* Loading Skeletons for pagination */}
-        {loading && !initialLoading && (
-          <>
-            {[1, 2, 3, 4].map((i) => (
-              <SkeletonProductCard key={`skeleton-${i}`} />
-            ))}
-          </>
-        )}
       </div>
-
-      {/* Sentinel element for intersection observer */}
-      <div
-        ref={observerTarget}
-        className="h-10 w-full mt-4 flex items-center justify-center"
-      />
-    </>
+    </div>
   );
 }
