@@ -142,12 +142,12 @@ export function ProductGrid({
     <div className="py-8">
       {title && (
         <div className="flex justify-between items-end mb-8 px-2">
-          <h2 className="text-xl lg:text-2xl font-semibold text-gray-900">
+          <h2 className="text-sm md:text-xl font-semibold text-gray-900">
             {title}
           </h2>
           <Link
             href="/catalog"
-            className="text-sm text-gray-500 hover:text-black hover:underline transition-all font-medium"
+            className="text-[9px] md:text-sm text-gray-500 hover:text-black hover:underline transition-all font-medium"
           >
             View all
           </Link>
