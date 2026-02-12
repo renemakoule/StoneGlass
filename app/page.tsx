@@ -3,7 +3,6 @@
 import { Header } from "@/components/layout/header";
 import { HeroBanner } from "@/components/shop/hero-banner";
 import { ProductGrid } from "@/components/shop/infinite-product-list";
-import { ProductDetail } from "@/components/shop/product-detail";
 import { MarqueeBanner } from "@/components/shop/marquee-banner";
 import { StorySection } from "@/components/shop/story-section";
 import { FeaturesBar } from "@/components/shop/features-bar";
@@ -16,8 +15,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white font-sans text-gray-800 flex flex-col relative">
-      <ProductDetail />
-
       {/* ANNOUNCEMENT BAR */}
       <div className="shrink-0 text-center py-2.5 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] text-black bg-[#6ab5b1]">
         <span className="font-medium">100% Natural, Hand-crafted</span>

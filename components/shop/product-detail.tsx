@@ -309,10 +309,10 @@ export function ProductDetail() {
                   value="description"
                   className="mt-0 outline-none space-y-3"
                 >
-                  <p className="text-[13px] text-gray-600 leading-relaxed border-l-2 border-brand-purple/20 pl-3">
+                  <p className="text-[13px] text-gray-800 leading-relaxed border-l-2 border-brand-purple/20 pl-3">
                     {selectedProduct.description}
                   </p>
-                  <p className="text-[11px] text-gray-400 italic">
+                  <p className="text-[11px] text-gray-600 italic">
                     {selectedProduct.more}
                   </p>
                 </TabsContent>

@@ -39,6 +39,7 @@ import { SearchDialog } from "@/components/shop/search-dialog";
 import { CheckoutSheet } from "@/components/shop/checkout-sheet";
 import { AuthInitializer } from "@/components/auth/auth-initializer";
 import { PaymentSuccessHandler } from "@/components/shop/payment-success-handler";
+import { ProductDetail } from "@/components/shop/product-detail";
 
 export default function RootLayout({
   children,
@@ -54,6 +55,7 @@ export default function RootLayout({
           <CheckoutSheet />
           <AuthInitializer />
           <PaymentSuccessHandler />
+          <ProductDetail />
           <Toaster />
           <Analytics />
         </LanguageProvider>
