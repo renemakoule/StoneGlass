@@ -58,7 +58,7 @@ function PaymentSuccessContent() {
               damping: 25,
               stiffness: 400,
             }}
-            className="w-full max-w-[320px] bg-white rounded-[24px] shadow-2xl overflow-hidden relative"
+            className="w-full max-w-[320px] bg-white rounded-[8px] shadow-md overflow-hidden relative"
           >
             <div className="p-6 flex flex-col items-center text-center">
               {/* Ultra minimal checkmark */}

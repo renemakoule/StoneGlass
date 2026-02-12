@@ -20,6 +20,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { useSearchStore } from "@/stores/searchStore";
+import { useProductStore } from "@/stores/productStore";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { PRODUCTS } from "@/lib/data";
@@ -27,6 +28,7 @@ import { formatPrice } from "@/lib/utils";
 
 export function SearchDialog() {
   const { isOpen, setIsOpen } = useSearchStore();
+  const { openDetail } = useProductStore();
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const filteredProducts = React.useMemo(() => {
@@ -151,32 +153,40 @@ export function SearchDialog() {
               </span>
             }
           >
-            {filteredProducts.map((product) => (
-              <CommandItem
-                key={product.id}
-                className="group cursor-pointer py-3 flex items-center justify-between"
-              >
-                <div className="flex items-center">
-                  <div className="relative w-10 h-10 bg-gray-50 rounded-sm mr-3 overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+            {filteredProducts.map((product) => {
+              const handleProductSelect = () => {
+                openDetail(product);
+                setIsOpen(false);
+              };
+
+              return (
+                <CommandItem
+                  key={product.id}
+                  className="group cursor-pointer py-3 flex items-center justify-between"
+                  onSelect={handleProductSelect}
+                >
+                  <div className="flex items-center">
+                    <div className="relative w-10 h-10 bg-gray-50 rounded-sm mr-3 overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-bold text-gray-800 uppercase tracking-tighter group-hover:text-brand-purple transition-colors line-clamp-1">
+                        {product.name}
+                      </span>
+                      <span className="text-[10px] text-gray-400 italic">
+                        Collection • ${formatPrice(product.price)}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-gray-800 uppercase tracking-tighter group-hover:text-brand-purple transition-colors line-clamp-1">
-                      {product.name}
-                    </span>
-                    <span className="text-[10px] text-gray-400 italic">
-                      Collection • ${formatPrice(product.price)}
-                    </span>
-                  </div>
-                </div>
-                <ArrowRight className="w-3 h-3 text-gray-200 group-hover:text-brand-purple group-hover:translate-x-1 transition-all" />
-              </CommandItem>
-            ))}
+                  <ArrowRight className="w-3 h-3 text-gray-200 group-hover:text-brand-purple group-hover:translate-x-1 transition-all" />
+                </CommandItem>
+              );
+            })}
           </CommandGroup>
         </CommandList>
 

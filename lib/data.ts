@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "anxiety-trinity-bracelet-of-stress-resilience",
     name: "Anxiety Trinity Bracelet of Stress Resilience",
-    price: 250.0,
+    price: 1.0,
     description:
       "The Anxiety: Trinity Bracelet of Stress Resilience is designed to support calm, balance, and emotional grounding in everyday life. Thoughtfully crafted with a harmonious combination of natural gemstones, this bracelet serves as a gentle reminder to slow down, breathe, and stay centered during moments of pressure.Wear it on its own for a subtle, reassuring presence or layer it with other bracelets to reinforce your intention of calm and inner stability. Each bracelet is made with genuine, carefully selected gemstone beads for lasting quality and comfort.",
     features: [
