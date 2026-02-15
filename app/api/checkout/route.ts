@@ -25,7 +25,23 @@ export async function POST(request: Request) {
 
     console.log(`Creating Dodo checkout session for ${amount} items...`);
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const origin = request.headers.get("origin");
+    const host = request.headers.get("host");
+    const protocol = request.headers.get("x-forwarded-proto") || "http";
+
+    // Priority: Env Var > Origin Header > Host Header
+    let siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+    if (!siteUrl) {
+      if (origin) {
+        siteUrl = origin;
+      } else if (host) {
+        siteUrl = `${protocol}://${host}`;
+      } else {
+        siteUrl = "http://localhost:3000";
+      }
+    }
+
     const type = source || "direct";
 
     const session = await dodo.checkoutSessions.create({
