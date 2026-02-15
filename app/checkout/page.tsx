@@ -5,15 +5,12 @@ import { useCartStore } from "@/stores/cartStore";
 import { useCheckoutStore } from "@/stores/checkoutStore";
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/navigation";
-import { Elements } from "@stripe/react-stripe-js";
-import { getStripe } from "@/lib/stripe-client";
-import { StripePaymentForm } from "@/components/shop/stripe-payment-form";
+import { DodoPaymentForm } from "@/components/shop/dodo-payment-form";
 import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { parsePrice } from "@/lib/utils";
 import { toast } from "sonner";
-
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -25,11 +22,7 @@ export default function CheckoutPage() {
   } = useCheckoutStore();
   const { user, loading: authLoading } = useAuthStore();
 
-  const [clientSecret, setClientSecret] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState(true);
-
-  // Ref pour éviter les doubles appels en mode StrictMode de React
-  const hasInitialized = React.useRef(false);
+  const [loading, setLoading] = React.useState(false);
 
   // Déterminer les articles pour le calcul du montant
   const items = directProduct
@@ -44,13 +37,21 @@ export default function CheckoutPage() {
   const shippingCost = shippingMethod === "express" ? 25 : 10;
   const total = subtotal + shippingCost;
 
-  const createPaymentIntent = async () => {
+  const handleDodoCheckout = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/create-payment-intent", {
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: total }),
+        body: JSON.stringify({
+          amount: total,
+          customerName: user?.email.split('@')[0] || "User",
+          customerEmail: user?.email,
+          metadata: {
+            source: directProduct ? "direct" : "cart",
+            items: items.map(i => i.name).join(", ")
+          }
+        }),
       });
 
       if (!response.ok) {
@@ -59,40 +60,30 @@ export default function CheckoutPage() {
       }
 
       const data = await response.json();
-      setClientSecret(data.clientSecret);
+      if (data.url) {
+        window.location.href = data.url;
+      }
     } catch (error: any) {
-      console.error("Error creating payment intent:", error);
-      toast.error("Could not initialize payment. Please try again.");
+      console.error("Error creating checkout session:", error);
+      toast.error(error.message || "Could not initialize payment. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   React.useEffect(() => {
-    // 1. Attendre que l'auth soit chargée
     if (authLoading) return;
-
-    // 2. Vérifier si l'utilisateur est connecté
     if (!user) {
       router.push("/");
       return;
     }
-
-    // 3. Vérifier si le panier est vide
     if (items.length === 0) {
       router.push("/");
       return;
     }
+  }, [user, authLoading, items.length, router]);
 
-    // 4. Créer l'intention de paiement (une seule fois)
-    if (!hasInitialized.current && !clientSecret) {
-      hasInitialized.current = true;
-      createPaymentIntent();
-    }
-  }, [user, authLoading, items.length, clientSecret, router]);
-
-  // Écran de chargement initial (Auth ou Initialisation Stripe)
-  if (authLoading || (loading && !clientSecret)) {
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white p-6">
         <div className="flex flex-col items-center gap-6">
@@ -110,10 +101,8 @@ export default function CheckoutPage() {
 
   return (
     <div className="h-screen flex flex-col bg-[#f1f1f1] font-sans selection:bg-brand-purple/10 overflow-hidden relative">
-      {/* RADIAL GRADIENT BACKGROUND LAYER */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#111111_0%,#000000_100%)] z-0" />
 
-      {/* AMBIENT GLOW ANIMATIONS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         <motion.div
           animate={{
@@ -122,11 +111,7 @@ export default function CheckoutPage() {
             scale: [1, 1.2, 0.9, 1],
             opacity: [0.5, 0.8, 0.5],
           }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -top-[15%] -left-[15%] w-[1000px] h-[1000px] bg-brand-purple/55 rounded-full blur-[200px]"
         />
         <motion.div
@@ -136,27 +121,17 @@ export default function CheckoutPage() {
             scale: [1, 1.3, 0.8, 1],
             opacity: [0.4, 0.7, 0.4],
           }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -bottom-[15%] -right-[15%] w-[1100px] h-[1100px] bg-blue-500/45 rounded-full blur-[250px]"
         />
       </div>
 
-      {/* HEADER (bg-white as requested) */}
       <header className="bg-white border-b border-gray-100 shrink-0 relative z-30">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between font-sans">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-gray-400 hover:text-gray-900 transition-colors"
-          >
+          <Link href="/" className="flex items-center gap-2 text-gray-400 hover:text-gray-900 transition-colors">
             <div className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-[11px] font-medium uppercase tracking-widest">
-                Store
-              </span>
+              <span className="text-[11px] font-medium uppercase tracking-widest">Store</span>
             </div>
           </Link>
           <div className="absolute left-1/2 -translate-x-1/2">
@@ -164,7 +139,7 @@ export default function CheckoutPage() {
               Stone<span className="text-brand-purple">Glass</span>
             </h1>
           </div>
-          <div className="w-20" /> {/* Spacer */}
+          <div className="w-20" />
         </div>
       </header>
 
@@ -175,58 +150,14 @@ export default function CheckoutPage() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="w-full max-w-5xl h-full md:max-h-[650px] bg-white md:rounded-md border-x-0 border-y md:border border-gray-100 shadow-[0_25px_80px_-15px_rgba(0,0,0,0.5),0_0_50px_rgba(110,84,251,0.2)] overflow-hidden flex flex-col relative"
         >
-          {/* Subtle Glow Border inside */}
           <div className="hidden md:block absolute inset-0 pointer-events-none border border-brand-purple/10 rounded-md z-50" />
-
           <div className="flex-1 flex flex-col md:flex-row overflow-hidden md:overflow-hidden overflow-y-auto md:overflow-y-visible">
-            {clientSecret ? (
-              <Elements
-                stripe={getStripe()}
-                options={{
-                  clientSecret,
-                  appearance: {
-                    theme: "stripe",
-                    variables: {
-                      colorPrimary: "#111827",
-                      colorBackground: "#ffffff",
-                      colorText: "#374151",
-                      colorDanger: "#ef4444",
-                      fontFamily: "ui-sans-serif, system-ui, -apple-system",
-                      spacingUnit: "2.5px",
-                      borderRadius: "6px",
-                    },
-                    rules: {
-                      ".Input": {
-                        border: "1px solid #e5e7eb",
-                        boxShadow: "none",
-                        fontSize: "13px",
-                      },
-                      ".Input:focus": {
-                        border: "1px solid #111827",
-                        boxShadow: "none",
-                      },
-                      ".Label": {
-                        fontSize: "12px",
-                        fontWeight: "500",
-                        marginBottom: "4px",
-                      },
-                    },
-                  },
-                }}
-              >
-                <StripePaymentForm
-                  amount={total}
-                  source={directProduct ? "direct" : "cart"}
-                />
-              </Elements>
-            ) : (
-              <div className="flex-1 flex flex-col items-center justify-center py-20">
-                <Loader2 className="w-8 h-8 animate-spin text-brand-purple mb-4" />
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                  Initializing Payment Terminal...
-                </p>
-              </div>
-            )}
+            <DodoPaymentForm
+              amount={total}
+              source={directProduct ? "direct" : "cart"}
+              onCheckout={handleDodoCheckout}
+              isProcessing={loading}
+            />
           </div>
         </motion.div>
       </main>
