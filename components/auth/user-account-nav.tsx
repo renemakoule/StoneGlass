@@ -111,7 +111,7 @@ export function UserAccountNav({ mobile = false }: UserAccountNavProps) {
           Settings
         </DropdownMenuItem> */}
 
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuSeparator /> */}
 
         <DropdownMenuItem
           className="cursor-pointer text-red-600 focus:text-red-700 focus:bg-red-50"
