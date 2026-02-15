@@ -15,7 +15,7 @@ function PaymentSuccessContent() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
-    const paymentSuccess = searchParams.get("payment_intent_client_secret");
+    const paymentSuccess = searchParams.get("payment_success") === "true";
     const type = searchParams.get("type"); // 'cart' or 'direct'
 
     if (paymentSuccess) {

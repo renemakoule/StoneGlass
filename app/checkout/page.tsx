@@ -45,12 +45,13 @@ export default function CheckoutPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: total,
-          customerName: user?.email.split('@')[0] || "User",
-          customerEmail: user?.email,
+          customerName: user?.email?.split("@")[0] || "User",
+          customerEmail: user?.email || "",
           metadata: {
             source: directProduct ? "direct" : "cart",
-            items: items.map(i => i.name).join(", ")
-          }
+            items: items.map((i) => i.name).join(", "),
+          },
+          source: directProduct ? "direct" : "cart",
         }),
       });
 
@@ -65,7 +66,9 @@ export default function CheckoutPage() {
       }
     } catch (error: any) {
       console.error("Error creating checkout session:", error);
-      toast.error(error.message || "Could not initialize payment. Please try again.");
+      toast.error(
+        error.message || "Could not initialize payment. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -128,10 +131,15 @@ export default function CheckoutPage() {
 
       <header className="bg-white border-b border-gray-100 shrink-0 relative z-30">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between font-sans">
-          <Link href="/" className="flex items-center gap-2 text-gray-400 hover:text-gray-900 transition-colors">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-gray-400 hover:text-gray-900 transition-colors"
+          >
             <div className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-[11px] font-medium uppercase tracking-widest">Store</span>
+              <span className="text-[11px] font-medium uppercase tracking-widest">
+                Store
+              </span>
             </div>
           </Link>
           <div className="absolute left-1/2 -translate-x-1/2">
