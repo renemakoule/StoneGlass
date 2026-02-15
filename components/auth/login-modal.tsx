@@ -9,9 +9,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/authStore";
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useState } from "react";
-// import { Google } from "lucide-react"; // lucide-react doesn't have Google icon standard, usually user uses custom or just text.
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -25,10 +24,13 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
+      // On passe l'URL de redirection si nécessaire, sinon on appelle juste la fonction
       await signInWithGoogle();
     } catch (error) {
       console.error("Login failed", error);
     } finally {
+      // Note: Souvent la page redirige vers Google, donc le setLoading(false)
+      // ne sera visible que si l'authentification échoue ou est annulée.
       setLoading(false);
     }
   };
@@ -51,7 +53,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
             className="w-full bg-white text-gray-900 border border-gray-300 hover:bg-gray-50 flex items-center justify-center gap-2"
           >
             {loading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader className="h-5 w-5 animate-spin text-gray-500" />
             ) : (
               <svg className="h-5 w-5" viewBox="0 0 24 24">
                 <path
@@ -72,7 +74,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 />
               </svg>
             )}
-            Sign in with Google
+            <span>{loading ? "Connecting..." : "Sign in with Google"}</span>
           </Button>
           <p className="text-center text-xs text-gray-400">
             By continuing, you agree to our Terms of Service and Privacy Policy.

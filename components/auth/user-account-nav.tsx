@@ -104,12 +104,12 @@ export function UserAccountNav({ mobile = false }: UserAccountNavProps) {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="cursor-pointer text-gray-600 focus:text-gray-900">
+        {/* <DropdownMenuItem className="cursor-pointer text-gray-600 focus:text-gray-900">
           My Orders
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer text-gray-600 focus:text-gray-900">
           Settings
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuSeparator />
 

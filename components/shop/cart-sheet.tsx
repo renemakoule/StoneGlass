@@ -9,6 +9,7 @@ import {
   Minus,
   Trash2,
   MapPin,
+  Loader, // Import de l'icône de chargement
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -37,11 +38,13 @@ export function CartSheet({ children }: CartSheetProps) {
   const { items, removeItem, addItem, decreaseItem } = useCartStore();
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [shippingMethod, setShippingMethod] = useState("standard");
+  const [isLoading, setIsLoading] = useState(false); // Nouvel état de chargement
   const { user, signInWithGoogle } = useAuthStore();
   const { closeCheckout } = useCheckoutStore();
   const router = useRouter();
 
   const handleCheckout = async () => {
+    setIsLoading(true); // Activer le chargement
     // Clear any direct purchase product to ensure cart is used
     closeCheckout();
 
@@ -51,9 +54,11 @@ export function CartSheet({ children }: CartSheetProps) {
         await signInWithGoogle(`${window.location.origin}/checkout`);
       } catch (error) {
         toast.error("Failed to sign in with Google");
+        setIsLoading(false); // Désactiver si erreur
       }
     } else {
       router.push("/checkout");
+      // Note: On ne remet pas forcément à false ici car la page change
     }
   };
 
@@ -271,15 +276,32 @@ export function CartSheet({ children }: CartSheetProps) {
 
             <button
               onClick={handleCheckout}
-              className="group relative w-full h-10 sm:h-11 bg-gray-900 text-white rounded-sm overflow-hidden hover:bg-brand-purple transition-all duration-500 shadow-xl shadow-gray-200"
+              disabled={isLoading} // Désactiver pendant le chargement
+              className={cn(
+                "group relative w-full h-10 sm:h-11 bg-gray-900 text-white rounded-sm overflow-hidden hover:bg-brand-purple transition-all duration-500 shadow-xl shadow-gray-200",
+                isLoading && "opacity-80 cursor-not-allowed",
+              )}
             >
               <div className="relative z-10 flex items-center justify-center gap-3">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
-                  PROCEED CHECKOUT
-                </span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                {isLoading ? (
+                  <>
+                    <Loader className="w-4 h-4 animate-spin text-white" />
+                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
+                      Processing...
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
+                      PROCEED CHECKOUT
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </div>
-              <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:left-full transition-all duration-1000" />
+              {!isLoading && (
+                <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:left-full transition-all duration-1000" />
+              )}
             </button>
 
             <p className="text-[9px] text-gray-400 text-center mt-2 italic font-medium">
