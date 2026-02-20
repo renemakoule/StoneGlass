@@ -10,17 +10,19 @@ function generateMockPayouts(count = 50) {
 
   return Array.from({ length: count }).map((_, i) => {
     const createdAt = new Date(now.getTime() - i * 2 * 60 * 60 * 1000);
+    const amount = 5000 + (i % 7) * 1200;
+    const fees = 120 + (i % 3) * 10;
     return {
       id: `payout_mock_${i + 1}`,
-      amount: amount + (i % 7) * 1200,
+      amount: amount,
       currency: currencies[i % currencies.length],
       status: statuses[i % statuses.length],
       created_at: createdAt.toISOString(),
       business_id: "biz_mock_123",
       settlement_id: `set_mock_${1000 + i}`,
       bank_account_last4: `${(1234 + i) % 9999}`.padStart(4, "0"),
-      fees: 120 + (i % 3) * 10,
-      net_amount: 5000 + (i % 7) * 1200 - (120 + (i % 3) * 10),
+      fees: fees,
+      net_amount: amount - fees,
     };
   });
 }
@@ -59,7 +61,7 @@ export async function GET(req: NextRequest) {
         headers: {
           Authorization: `Bearer ${process.env.DODO_PAYMENTS_API_KEY}`,
         },
-      }
+      },
     );
 
     if (res.ok) return Response.json(await res.json());

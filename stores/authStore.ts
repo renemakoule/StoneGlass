@@ -38,12 +38,19 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   signInWithGoogle: async (redirectTo?: string) => {
+    const currentUrl =
+      typeof window !== "undefined" ? window.location.href : "";
+    const next = redirectTo || currentUrl;
+
+    // On construit l'URL de callback avec le paramètre de destination
+    const callbackUrl = new URL("/auth/callback", window.location.origin);
+    callbackUrl.searchParams.set("next", next);
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo:
-          redirectTo ||
-          (typeof window !== "undefined" ? window.location.href : undefined),
+        redirectTo: callbackUrl.toString(),
+        skipBrowserRedirect: false,
       },
     });
 
