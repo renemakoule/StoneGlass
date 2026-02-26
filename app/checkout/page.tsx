@@ -5,8 +5,10 @@ import { useCartStore } from "@/stores/cartStore";
 import { useCheckoutStore } from "@/stores/checkoutStore";
 import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/navigation";
-import { DodoPaymentForm } from "@/components/shop/dodo-payment-form";
-import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react";
+import { Elements } from "@stripe/react-stripe-js";
+import { getStripe } from "@/lib/stripe-client";
+import { StripePaymentForm } from "@/components/shop/stripe-payment-form";
+import { Loader, ArrowLeft, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { parsePrice } from "@/lib/utils";
 import { toast } from "sonner";
@@ -22,8 +24,6 @@ export default function CheckoutPage() {
   } = useCheckoutStore();
   const { user, loading: authLoading } = useAuthStore();
 
-  const [loading, setLoading] = React.useState(false);
-
   // Déterminer les articles pour le calcul du montant
   const items = directProduct
     ? [{ ...directProduct, quantity: directQuantity }]
@@ -36,43 +36,34 @@ export default function CheckoutPage() {
 
   const shippingCost = shippingMethod === "express" ? 25 : 10;
   const total = subtotal + shippingCost;
+  const [clientSecret, setClientSecret] = React.useState<string | null>(null);
 
-  const handleDodoCheckout = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: total,
-          customerName: user?.email?.split("@")[0] || "User",
-          customerEmail: user?.email || "",
-          metadata: {
-            source: directProduct ? "direct" : "cart",
-            items: items.map((i) => i.name).join(", "),
-          },
-          source: directProduct ? "direct" : "cart",
-        }),
-      });
+  // Fetch client secret for Stripe
+  React.useEffect(() => {
+    const fetchClientSecret = async () => {
+      try {
+        const response = await fetch("/api/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: total }),
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to initialize payment");
+        if (!response.ok) {
+          throw new Error("Failed to fetch client secret");
+        }
+
+        const data = await response.json();
+        setClientSecret(data.clientSecret);
+      } catch (error) {
+        console.error("Error fetching client secret:", error);
+        toast.error("Failed to initialize payment system.");
       }
+    };
 
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch (error: any) {
-      console.error("Error creating checkout session:", error);
-      toast.error(
-        error.message || "Could not initialize payment. Please try again.",
-      );
-    } finally {
-      setLoading(false);
+    if (total > 0) {
+      fetchClientSecret();
     }
-  };
+  }, [total]);
 
   React.useEffect(() => {
     if (authLoading) return;
@@ -144,7 +135,7 @@ export default function CheckoutPage() {
           </Link>
           <div className="absolute left-1/2 -translate-x-1/2">
             <h1 className="text-xl font-serif italic tracking-tight text-gray-900 select-none">
-              Stone<span className="text-brand-purple">Glass</span>
+              Stone<span className="text-brand-purple">Glas</span>
             </h1>
           </div>
           <div className="w-20" />
@@ -160,12 +151,32 @@ export default function CheckoutPage() {
         >
           <div className="hidden md:block absolute inset-0 pointer-events-none border border-brand-purple/10 rounded-md z-50" />
           <div className="flex-1 flex flex-col md:flex-row overflow-hidden md:overflow-hidden overflow-y-auto md:overflow-y-visible">
-            <DodoPaymentForm
-              amount={total}
-              source={directProduct ? "direct" : "cart"}
-              onCheckout={handleDodoCheckout}
-              isProcessing={loading}
-            />
+            {clientSecret ? (
+              <Elements
+                stripe={getStripe()}
+                options={{
+                  clientSecret,
+                  appearance: {
+                    theme: "stripe",
+                    variables: {
+                      colorPrimary: "#6e54fb",
+                    },
+                  },
+                }}
+              >
+                <StripePaymentForm
+                  amount={total}
+                  source={directProduct ? "direct" : "cart"}
+                />
+              </Elements>
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center p-12 text-center space-y-4">
+                <Loader className="w-5 h-5 text-brand-purple animate-spin" />
+                <p className="text-gray-500 text-sm">
+                  Initiating secure payment...
+                </p>
+              </div>
+            )}
           </div>
         </motion.div>
       </main>

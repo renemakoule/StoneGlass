@@ -117,7 +117,7 @@ export function UserAccountNav({ mobile = false }: UserAccountNavProps) {
           className="cursor-pointer text-red-600 focus:text-red-700 focus:bg-red-50"
           onClick={() => signOut()}
         >
-          Sign out
+          Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

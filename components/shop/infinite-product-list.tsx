@@ -135,8 +135,8 @@ export function ProductGrid({
   // Grid Config based on viewMode
   const gridClasses =
     viewMode === "list"
-      ? "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-8" // Dense List View
-      : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10"; // Default Grid View
+      ? "grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-x-3 gap-y-8" // Dense List View
+      : "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-10"; // Default Grid View
 
   return (
     <div className="py-8">

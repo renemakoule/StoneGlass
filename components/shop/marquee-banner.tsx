@@ -7,21 +7,21 @@ const marqueeText =
 
 export function MarqueeBanner() {
   return (
-    <div className="bg-[#fffdf4] py-6 overflow-hidden border-y border-pink-100">
-      <div className="flex whitespace-nowrap">
-        <motion.div
-          animate={{ x: [0, -1000] }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="flex whitespace-nowrap text-[10px] lg:text-xs font-semibold tracking-[0.2em] uppercase text-black"
-        >
-          <span className="px-4">{marqueeText}</span>
-          <span className="px-4">{marqueeText}</span>
-        </motion.div>
-      </div>
+    <div className="bg-[#fffdf4] py-6 overflow-hidden border-y border-pink-100 flex items-center">
+      <motion.div
+        animate={{ x: [0, "-50%"] }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="flex whitespace-nowrap text-[10px] lg:text-xs font-semibold tracking-[0.2em] uppercase text-black"
+      >
+        <span className="px-8">{marqueeText}</span>
+        <span className="px-8">{marqueeText}</span>
+        <span className="px-8">{marqueeText}</span>
+        <span className="px-8">{marqueeText}</span>
+      </motion.div>
     </div>
   );
 }

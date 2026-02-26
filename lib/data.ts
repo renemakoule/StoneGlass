@@ -49,12 +49,12 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-anxiety-trinity-bracelet-of-stress-resilience-0",
-        name: "calm1",
-        image:
-          "/StoneGlas/anxiety-trinity-bracelet-of-stress-resilience/calm1.webp",
-      },
+      // {
+      //   id: "v-anxiety-trinity-bracelet-of-stress-resilience-0",
+      //   name: "calm1",
+      //   image:
+      //     "/StoneGlas/anxiety-trinity-bracelet-of-stress-resilience/calm1.webp",
+      // },
       {
         id: "v-anxiety-trinity-bracelet-of-stress-resilience-1",
         name: "calm2",
@@ -118,11 +118,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-azurite-bracelet-0",
-        name: "azurite 1",
-        image: "/StoneGlas/azurite-bracelet/azurite-1.jpg",
-      },
+      // {
+      //   id: "v-azurite-bracelet-0",
+      //   name: "azurite 1",
+      //   image: "/StoneGlas/azurite-bracelet/azurite-1.jpg",
+      // },
       {
         id: "v-azurite-bracelet-1",
         name: "azurite",
@@ -180,11 +180,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-blue-apatite-the-blue-focus-bracelet-0",
-        name: "blu",
-        image: "/StoneGlas/blue-apatite-the-blue-focus-bracelet/blu.webp",
-      },
+      // {
+      //   id: "v-blue-apatite-the-blue-focus-bracelet-0",
+      //   name: "blu",
+      //   image: "/StoneGlas/blue-apatite-the-blue-focus-bracelet/blu.webp",
+      // },
       {
         id: "v-blue-apatite-the-blue-focus-bracelet-1",
         name: "blue apatite",
@@ -247,11 +247,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-blue-spot-stone-bracelet-0",
-        name: "blue",
-        image: "/StoneGlas/blue-spot-stone-bracelet/blue.avif",
-      },
+      // {
+      //   id: "v-blue-spot-stone-bracelet-0",
+      //   name: "blue",
+      //   image: "/StoneGlas/blue-spot-stone-bracelet/blue.avif",
+      // },
       {
         id: "v-blue-spot-stone-bracelet-1",
         name: "blue1",
@@ -299,11 +299,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-dream-the-bracelet-of-resolve-0",
-        name: "dram1",
-        image: "/StoneGlas/dream-the-bracelet-of-resolve/dram1.webp",
-      },
+      // {
+      //   id: "v-dream-the-bracelet-of-resolve-0",
+      //   name: "dram1",
+      //   image: "/StoneGlas/dream-the-bracelet-of-resolve/dram1.webp",
+      // },
       {
         id: "v-dream-the-bracelet-of-resolve-1",
         name: "dream",
@@ -356,11 +356,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-Friendship-0",
-        name: "friend1",
-        image: "/StoneGlas/Friendship/friend1.webp",
-      },
+      // {
+      //   id: "v-Friendship-0",
+      //   name: "friend1",
+      //   image: "/StoneGlas/Friendship/friend1.webp",
+      // },
       {
         id: "v-Friendship-1",
         name: "friend2",
@@ -409,12 +409,12 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-good-luck-pure-luck-horseshoe-amethyst-bracelet-0",
-        name: "friend2",
-        image:
-          "/StoneGlas/good-luck-pure-luck-horseshoe-amethyst-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-good-luck-pure-luck-horseshoe-amethyst-bracelet-0",
+      //   name: "friend2",
+      //   image:
+      //     "/StoneGlas/good-luck-pure-luck-horseshoe-amethyst-bracelet/friend2.webp",
+      // },
       {
         id: "v-good-luck-pure-luck-horseshoe-amethyst-bracelet-1",
         name: "luck",
@@ -478,11 +478,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-labradorite-bracelet-0",
-        name: "friend2",
-        image: "/StoneGlas/labradorite-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-labradorite-bracelet-0",
+      //   name: "friend2",
+      //   image: "/StoneGlas/labradorite-bracelet/friend2.webp",
+      // },
       {
         id: "v-labradorite-bracelet-1",
         name: "labra",
@@ -540,11 +540,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-love-repair-my-hairt-0",
-        name: "love 1",
-        image: "/StoneGlas/love-repair-my-hairt/love-1.webp",
-      },
+      // {
+      //   id: "v-love-repair-my-hairt-0",
+      //   name: "love 1",
+      //   image: "/StoneGlas/love-repair-my-hairt/love-1.webp",
+      // },
       {
         id: "v-love-repair-my-hairt-1",
         name: "love 2",
@@ -592,11 +592,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-money-the-ultimate-wealth-bracelet-0",
-        name: "money1",
-        image: "/StoneGlas/money-the-ultimate-wealth-bracelet/money1.webp",
-      },
+      // {
+      //   id: "v-money-the-ultimate-wealth-bracelet-0",
+      //   name: "money1",
+      //   image: "/StoneGlas/money-the-ultimate-wealth-bracelet/money1.webp",
+      // },
       {
         id: "v-money-the-ultimate-wealth-bracelet-1",
         name: "money2",
@@ -649,11 +649,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-natural-sparrow-stone-0",
-        name: "sparrow 1",
-        image: "/StoneGlas/natural-sparrow-stone/sparrow-1.avif",
-      },
+      // {
+      //   id: "v-natural-sparrow-stone-0",
+      //   name: "sparrow 1",
+      //   image: "/StoneGlas/natural-sparrow-stone/sparrow-1.avif",
+      // },
       {
         id: "v-natural-sparrow-stone-1",
         name: "sparrow 2",
@@ -701,11 +701,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-pink-crystal-bracelet-0",
-        name: "friend2",
-        image: "/StoneGlas/pink-crystal-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-pink-crystal-bracelet-0",
+      //   name: "friend2",
+      //   image: "/StoneGlas/pink-crystal-bracelet/friend2.webp",
+      // },
       {
         id: "v-pink-crystal-bracelet-1",
         name: "pi",
@@ -773,11 +773,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-power-the-energy-protection-bracelet-0",
-        name: "friend2",
-        image: "/StoneGlas/power-the-energy-protection-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-power-the-energy-protection-bracelet-0",
+      //   name: "friend2",
+      //   image: "/StoneGlas/power-the-energy-protection-bracelet/friend2.webp",
+      // },
       {
         id: "v-power-the-energy-protection-bracelet-1",
         name: "power",
@@ -840,11 +840,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-strawberry-crystal-bracelet-0",
-        name: "17",
-        image: "/StoneGlas/strawberry-crystal-bracelet/17.webp",
-      },
+      // {
+      //   id: "v-strawberry-crystal-bracelet-0",
+      //   name: "17",
+      //   image: "/StoneGlas/strawberry-crystal-bracelet/17.webp",
+      // },
       {
         id: "v-strawberry-crystal-bracelet-1",
         name: "braceletquartzfraise cristalnaturelaaadehautequalitepourl amouretlaguerisonemotionnelle8mm",
@@ -903,12 +903,12 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-success-built-to-win-7a-grade-tiger-s-eye-bracelet-0",
-        name: "succes",
-        image:
-          "/StoneGlas/success-built-to-win-7a-grade-tiger-s-eye-bracelet/succes.webp",
-      },
+      // {
+      //   id: "v-success-built-to-win-7a-grade-tiger-s-eye-bracelet-0",
+      //   name: "succes",
+      //   image:
+      //     "/StoneGlas/success-built-to-win-7a-grade-tiger-s-eye-bracelet/succes.webp",
+      // },
       {
         id: "v-success-built-to-win-7a-grade-tiger-s-eye-bracelet-1",
         name: "success1",
@@ -966,11 +966,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-the-spiritual-protection-0",
-        name: "pprotection1",
-        image: "/StoneGlas/the-spiritual-protection/pprotection1.jpg",
-      },
+      // {
+      //   id: "v-the-spiritual-protection-0",
+      //   name: "pprotection1",
+      //   image: "/StoneGlas/the-spiritual-protection/pprotection1.jpg",
+      // },
       {
         id: "v-the-spiritual-protection-1",
         name: "protection2",
@@ -1018,11 +1018,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-the-triple-protection-bracelet-0",
-        name: "friend2",
-        image: "/StoneGlas/the-triple-protection-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-the-triple-protection-bracelet-0",
+      //   name: "friend2",
+      //   image: "/StoneGlas/the-triple-protection-bracelet/friend2.webp",
+      // },
       {
         id: "v-the-triple-protection-bracelet-1",
         name: "tiple protection",
@@ -1093,12 +1093,12 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-unakite-bracelet-0",
-        name: "braceletencristald unakite braceletenunakiteextensible bijouxenunakite braceletencristaldeguerison braceletnouveaudepart braceletencristalpourfemme",
-        image:
-          "/StoneGlas/unakite-bracelet/braceletencristald-unakite-braceletenunakiteextensible-bijouxenunakite-braceletencristaldeguerison-braceletnouveaudepart-braceletencristalpourfemme.webp",
-      },
+      // {
+      //   id: "v-unakite-bracelet-0",
+      //   name: "braceletencristald unakite braceletenunakiteextensible bijouxenunakite braceletencristaldeguerison braceletnouveaudepart braceletencristalpourfemme",
+      //   image:
+      //     "/StoneGlas/unakite-bracelet/braceletencristald-unakite-braceletenunakiteextensible-bijouxenunakite-braceletencristaldeguerison-braceletnouveaudepart-braceletencristalpourfemme.webp",
+      // },
       {
         id: "v-unakite-bracelet-1",
         name: "unah 1",
@@ -1157,11 +1157,11 @@ export const PRODUCTS: Product[] = [
     sizes: ["XS:14cm", "S:15cm", "M:16cm", "L:17cm", "XL:18cm", "XXL:19cm"],
     colors: [],
     varieties: [
-      {
-        id: "v-yellow-tiger-eye-bracelet-0",
-        name: "friend2",
-        image: "/StoneGlas/yellow-tiger-eye-bracelet/friend2.webp",
-      },
+      // {
+      //   id: "v-yellow-tiger-eye-bracelet-0",
+      //   name: "friend2",
+      //   image: "/StoneGlas/yellow-tiger-eye-bracelet/friend2.webp",
+      // },
       {
         id: "v-yellow-tiger-eye-bracelet-1",
         name: "tiger eye bracelet crystal bead bracelet tiger eye bracelet 8mm tiger eye tumbled bracelet gemstone",
