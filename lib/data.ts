@@ -96,7 +96,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "azurite-bracelet",
     name: "Azurite Bracelet",
-    price: 4500.0,
+    price: 75.0,
     description:
       "The Azurite Bracelet highlights the deep blue beauty of natural azurite, a stone admired for its rich color and distinctive character. Crafted for those who value authenticity and natural elegance, this bracelet brings a refined, mineral presence to everyday wear.Wear it alone for a bold yet sophisticated look or pair it with other bracelets to create a balanced, natural style. Each piece is made with genuine azurite beads, carefully selected for their intense color variations and natural texture.",
     features: [
@@ -158,7 +158,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "blue-apatite-the-blue-focus-bracelet",
     name: "Blue Apatite The Blue Focus Bracelet",
-    price: 435.0,
+    price: 95.0,
     description:
       "This Blue Apatite bracelet is designed to stimulate mental clarity, focus, and self-expression, helping you stay on track with your daily goals. It's perfect for those seeking a stone that inspires creativity, discernment, and clearer communication.Wear this bracelet alone for subtle energy or layer it with other bracelets to enhance your intention of balance and focus. This bracelet is crafted with genuine, high-quality Blue Apatite beads, carefully selected for their natural luster.",
     features: [
@@ -225,7 +225,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "blue-spot-stone-bracelet",
     name: "Blue Spot Stone Bracelet",
-    price: 999.0,
+    price: 99.0,
     description:
       "The Blue Spot Stone Bracelet showcases the natural charm and visual appeal of genuine Blue Spot Stone, known for its distinctive blue and white patterns and organic beauty. Designed for those who value both style and subtle symbolic meaning, this bracelet brings a calm yet expressive presence to your everyday look.Wear it on its own for a natural, effortless style or stack it with other bracelets to reflect your personal intention. Each bracelet is made with carefully selected natural Blue Spot Stone beads, chosen for their unique color variations and harmonious patterns.",
     features: [
@@ -277,7 +277,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "dream-the-bracelet-of-resolve",
     name: "dream the bracelet of resolve",
-    price: 4999.0,
+    price: 79.0,
     description:
       "Designed to support inner strength and determination, the Dream Bracelet of Resolve is a symbol of focus, resilience, and personal commitment. It is created for those who move forward with intention, even in moments of doubt, and seek clarity while pursuing their goals. Wear it alone for a refined, meaningful statement or layer it with other bracelets to reinforce your personal intention. This bracelet is crafted with genuine natural gemstone beads, carefully selected for their quality and timeless appeal.",
     features: [
@@ -334,7 +334,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "Friendship",
     name: "Friendship",
-    price: 1899.0,
+    price: 129.0,
     description:
       "The Friendship bracelet is designed to celebrate connection, loyalty, and meaningful bonds. Created as a symbol of trust and harmony, it represents the value of shared moments, mutual support, and lasting relationships. Wear it as a daily reminder of connection or gift it to someone special as a symbol of appreciation and unity. Each bracelet is crafted with genuine natural gemstone beads, carefully selected for their balance, quality, and timeless design.",
     features: [
@@ -386,7 +386,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "good-luck-pure-luck-horseshoe-amethyst-bracelet",
     name: "Good luck Pure Luck - Horseshoe Amethyst Bracelet",
-    price: 299.0,
+    price: 139.0,
     description:
       "The Good Luck: Pure Luck Horseshoe Amethyst Bracelet is designed to symbolize positivity, protection, and fortunate energy. Featuring natural amethyst gemstones and a horseshoe accent, this bracelet represents luck, balance, and a calm state of mind. Wear it on its own for a meaningful and elegant look or stack it with other bracelets to enhance your intention of good fortune. Each bracelet is crafted with genuine amethyst beads, carefully selected for their rich color, clarity, and lasting beauty.",
     features: [
@@ -456,7 +456,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "labradorite-bracelet",
     name: "Labradorite Bracelet",
-    price: 355.0,
+    price: 135.0,
     description:
       "The Labradorite Bracelet showcases the breathtaking beauty and iridescent flashes of natural Labradorite, known for its unique play of colors and organic elegance. Designed for those who appreciate both visual depth and meaningful symbolism, this bracelet brings an earthy yet striking presence to everyday wear. Wear it on its own for a distinctive, natural look or stack it with other pieces to elevate your personal style. Each bracelet is crafted with genuine Labradorite beads, selected for their vibrant labradorescence and refined finish.",
     features: [
@@ -518,7 +518,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "love-repair-my-hairt",
     name: "Love Repair",
-    price: 2500.0,
+    price: 125.0,
     description:
       "The Love: Repair My Heart bracelet is designed to support emotional healing, self-love, and inner balance. Created as a gentle symbol of renewal, it accompanies those who wish to reconnect with their emotions and move forward with openness and compassion. Wear it alone as a meaningful daily reminder or layer it with other bracelets to reinforce your intention of love and emotional harmony. Each bracelet is crafted with genuine natural gemstone beads, carefully selected for their softness, quality, and timeless elegance.",
     features: [
@@ -570,7 +570,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "money-the-ultimate-wealth-bracelet",
     name: "money the ultimate wealth bracelet",
-    price: 4099.0,
+    price: 140.0,
     description:
       "The Money: Ultimate Wealth Bracelet is designed to symbolize ambition, confidence, and a success-driven mindset. Crafted for those who value focus and consistency, this bracelet represents a clear intention toward growth, opportunity, and personal achievement. Wear it as a refined daily statement or combine it with other bracelets to strengthen your intention of prosperity. Each piece is made with genuine natural gemstone beads, carefully selected for their quality, balance, and timeless elegance.",
     features: [
@@ -627,7 +627,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "natural-sparrow-stone",
     name: "Natural Sparrow Stone",
-    price: 499.0,
+    price: 89.0,
     description:
       "The Natural Sparrow Stone Bracelet highlights the beauty and authenticity of raw, natural materials. Crafted with genuine Sparrow Stone, this piece reflects a connection to nature, simplicity, and timeless craftsmanship, making it ideal for those who appreciate organic textures and understated elegance. Designed to be worn daily, this bracelet can stand alone for a natural, minimalist look or be paired with other pieces for a balanced and earthy style. Each bracelet is made with carefully selected Sparrow Stone beads, chosen for their unique patterns and natural character.",
     features: [
@@ -679,7 +679,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "pink-crystal-bracelet",
     name: "Pink Crystal Bracelet",
-    price: 799.0,
+    price: 79.0,
     description:
       "The Pink Crystal Bracelet highlights the soft elegance and natural beauty of pink crystal stones. Designed for those who appreciate subtle color tones and refined materials, this bracelet brings a gentle, timeless touch to everyday style. Wear it alone for a delicate, minimalist look, or layer it with other bracelets to create a harmonious, balanced appearance. Each bracelet is crafted with genuine pink crystal beads, carefully selected for their clarity, smooth texture, and soft natural hues.",
     features: [
@@ -751,7 +751,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "power-the-energy-protection-bracelet",
     name: "power the energy protection bracelet",
-    price: 3999.0,
+    price: 149.0,
     description:
       "The Power: Energy Protection Bracelet is designed to support strength, grounding, and energetic balance. Crafted as a symbol of personal protection and inner stability, it accompanies those who seek to move through their day with confidence and calm presence. Wear it alone for a bold yet refined statement or stack it with other bracelets to reinforce your intention of protection and balance. Each bracelet is made with genuine natural gemstone beads, carefully selected for their durability, texture, and timeless appeal.",
     features: [
@@ -818,7 +818,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "strawberry-crystal-bracelet",
     name: "Strawberry Crystal Bracelet",
-    price: 499.0,
+    price: 79.0,
     description:
       "The Strawberry Crystal Bracelet is a delicate and elegant piece crafted from natural strawberry crystal, a stone admired for its soft pink tones infused with subtle red inclusions that resemble tiny strawberry seeds. This unique appearance gives each bracelet a warm, romantic, and uplifting character. Designed for everyday wear, this bracelet combines natural beauty with a refined aesthetic. Strawberry crystal is often associated with love, emotional harmony, and positive energy, making it a meaningful accessory as well as a stylish one. Each bead is carefully selected to highlight the stone’s natural glow and individuality.",
     features: [
@@ -880,7 +880,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "success-built-to-win-7a-grade-tiger-s-eye-bracelet",
     name: "success built to win 7a grade tiger s eye bracelet",
-    price: 345.0,
+    price: 95.0,
     description:
       "The Success: Built to Win bracelet is designed to embody confidence, determination, and personal power. Crafted with 7A Grade Tiger's Eye gemstones, this bracelet is made for those who pursue their goals with focus, courage, and consistency. Wear it as a daily reminder of strength and ambition, either on its own or stacked with other bracelets for a bold yet refined look. Each piece is made with genuine, high-quality gemstones selected for their depth, polish, and lasting beauty.",
     features: [
@@ -944,7 +944,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "the-spiritual-protection",
     name: "The spiritual protection",
-    price: 200.0,
+    price: 80.0,
     description:
       "Even when you encounter fear, this tiger's eye gemstone will help you feel empowered and emboldened to move past it.  This Tiger Eye stretch bracelet features a sterling silver half moon cut accent bead. Wear as a single bracelet or mix it up to make a bracelet stack for added energy. This bracelet is made with genuine Grade A gemstone beads. ",
     features: [
@@ -996,7 +996,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "the-triple-protection-bracelet",
     name: "The Triple Protection Bracelet",
-    price: 899.0,
+    price: 89.0,
     description:
       "The Triple Protection Bracelet is designed to symbolize strength, balance, and personal protection. Crafted with a thoughtful combination of natural gemstones, it represents a layered approach to grounding, resilience, and energetic stability throughout daily life. Wear it alone for a strong, confident statement or stack it with other bracelets to reinforce your intention of protection and inner balance. Each bracelet is made with genuine gemstone beads, carefully selected for their durability, harmony, and refined finish.",
     features: [
@@ -1070,7 +1070,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "unakite-bracelet",
     name: "UNAKITE Bracelet",
-    price: 599.0,
+    price: 99.0,
     description:
       "The Unakite Bracelet features the unique blend of soft green and pink tones found in genuine Unakite stone, offering a naturally expressive and one-of-a-kind look. Designed for those who appreciate organic beauty and emotional balance, this bracelet brings a grounded yet graceful presence to any outfit. Wear it alone for a timeless, earthy aesthetic or stack it with other pieces to deepen your personal style. Each bracelet is crafted with carefully selected Unakite beads, known for their distinctive patterns and natural character.",
     features: [
@@ -1134,7 +1134,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "yellow-tiger-eye-bracelet",
     name: "Yellow Tiger Eye Bracelet",
-    price: 1999.0,
+    price: 150.0,
     description:
       "The Yellow Tiger Eye Bracelet is crafted from natural yellow tiger eye stone, recognized for its golden-yellow tones and silky, reflective bands. This stone is valued for its bold appearance and timeless appeal, making the bracelet both powerful and elegant. Designed for daily wear, this bracelet brings a confident and grounded presence to any look. Each bead is carefully polished to enhance the stone’s natural shine and distinctive chatoyancy, ensuring that every bracelet is unique.",
     features: [
